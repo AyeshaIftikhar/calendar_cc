@@ -107,7 +107,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,6 +124,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
           eventDoneColor: Colors.deepPurple,
           defaultOutOfMonthDayColor: Colors.grey,
           expandableDateFormat: 'EEEE, dd. MMMM yyyy',
+          holidays: const [2, 4],
+          blockedDates: [DateTime(DateTime.now().year, 11, 29)],
           onEventSelected: (value) {
             debugPrint('Event selected ${value.summary}');
           },

@@ -26,6 +26,7 @@ class Range {
 class Calendar extends StatefulWidget {
   const Calendar({
     super.key,
+    this.holidays,
     this.onMonthChanged,
     this.onDateSelected,
     this.onRangeSelected,
@@ -64,6 +65,7 @@ class Calendar extends StatefulWidget {
     this.datePickerConfig,
     this.eventTileHeight,
     this.image,
+    this.blockedDates,
   });
   final ValueChanged<DateTime>? onDateSelected;
   final ValueChanged<DateTime>? onMonthChanged;
@@ -104,6 +106,12 @@ class Calendar extends StatefulWidget {
   final DatePickerConfig? datePickerConfig;
   final double? eventTileHeight;
   final String? image;
+
+  /// [1,2,3,4,5,6,7] as DateTime corresponds to week of the day as 1: Monday, 2: Tuesday, so on.
+  final List<int>? holidays;
+
+  /// block certain dates like Christmas, New Year, etc.
+  final List<DateTime>? blockedDates;
 
   @override
   State<Calendar> createState() => _CalendarState();
@@ -274,8 +282,8 @@ class _CalendarState extends State<Calendar> {
                           DateTime(DateTime.now().year - 100, 1),
                       lastDate: widget.datePickerConfig?.lastDate ??
                           DateTime(DateTime.now().year + 100, 1),
-                      initialDate: widget.datePickerConfig?.initialDate ??
-                          DateTime.now(),
+                      // initialDate: widget.datePickerConfig?.initialDate ??
+                      //     DateTime.now(),
                       // save the selected date to _selectedDate DateTime variable.
                       // It's used to set the previous selected date when
                       // re-showing the dialog.
@@ -360,16 +368,18 @@ class _CalendarState extends State<Calendar> {
         horizontalThreshold: 40.0,
         swipeDetectionMoment: SwipeDetectionMoment.onUpdate,
       ),
-      child: Column(children: <Widget>[
-        GridView.count(
-          childAspectRatio: 1.1,
-          primary: false,
-          shrinkWrap: true,
-          crossAxisCount: 7,
-          padding: const EdgeInsets.only(bottom: 0.0),
-          children: calendarBuilder(),
-        ),
-      ]),
+      child: Column(
+        children: <Widget>[
+          GridView.count(
+            childAspectRatio: 1.1,
+            primary: false,
+            shrinkWrap: true,
+            crossAxisCount: 7,
+            padding: const EdgeInsets.only(bottom: 0.0),
+            children: calendarBuilder(),
+          ),
+        ],
+      ),
     );
   }
 
@@ -380,7 +390,6 @@ class _CalendarState extends State<Calendar> {
     for (var day in widget.weekDays) {
       dayWidgets.add(
         FlutterCalenderTile(
-          // image: widget.image,
           defaultDayColor: widget.defaultDayColor,
           defaultOutOfMonthDayColor: widget.defaultOutOfMonthDayColor,
           selectedColor: widget.selectedColor,
@@ -388,7 +397,6 @@ class _CalendarState extends State<Calendar> {
           todayColor: widget.todayColor,
           eventColor: widget.eventColor,
           eventDoneColor: widget.eventDoneColor,
-          events: eventsMap![day],
           isDayOfWeek: true,
           dayOfWeek: day,
           dayOfWeekStyle: widget.dayOfWeekStyle ??
@@ -412,13 +420,8 @@ class _CalendarState extends State<Calendar> {
         day = day.subtract(Duration(hours: day.hour));
       }
 
-      if (monthStarted && day.day == 01) {
-        monthEnded = true;
-      }
-
-      if (Utils.isFirstDayOfMonth(day)) {
-        monthStarted = true;
-      }
+      if (monthStarted && day.day == 01) monthEnded = true;
+      if (Utils.isFirstDayOfMonth(day)) monthStarted = true;
 
       if (widget.dayBuilder != null) {
         // Use the dayBuilder widget passed as parameter to render the date tile
@@ -435,24 +438,47 @@ class _CalendarState extends State<Calendar> {
             child: widget.dayBuilder!(context, day),
             date: day,
             onDateSelected: () => handleSelectedDateAndUserCallback(day),
+            isHoliday: widget.holidays == null
+                ? false
+                : widget.holidays!.isEmpty
+                    ? false
+                    : widget.holidays!.contains(day.weekday),
+            isBlocked: widget.blockedDates == null
+                ? false
+                : widget.blockedDates!.any((element) =>
+                    element.year == day.year &&
+                    element.month == day.month &&
+                    element.day == day.day),
           ),
         );
       } else {
         dayWidgets.add(
           FlutterCalenderTile(
-              defaultDayColor: widget.defaultDayColor,
-              defaultOutOfMonthDayColor: widget.defaultOutOfMonthDayColor,
-              selectedColor: widget.selectedColor,
-              selectedTodayColor: widget.selectedTodayColor,
-              todayColor: widget.todayColor,
-              eventColor: widget.eventColor,
-              eventDoneColor: widget.eventDoneColor,
-              events: eventsMap![day],
-              onDateSelected: () => handleSelectedDateAndUserCallback(day),
-              date: day,
-              dateStyles: configureDateStyle(monthStarted, monthEnded),
-              isSelected: Utils.isSameDay(selectedDate, day),
-              inMonth: day.month == selectedDate.month),
+            defaultDayColor: widget.defaultDayColor,
+            defaultOutOfMonthDayColor: widget.defaultOutOfMonthDayColor,
+            selectedColor: widget.selectedColor,
+            selectedTodayColor: widget.selectedTodayColor,
+            todayColor: widget.todayColor,
+            eventColor: widget.eventColor,
+            eventDoneColor: widget.eventDoneColor,
+            events: eventsMap![day],
+            onDateSelected: () => handleSelectedDateAndUserCallback(day),
+            date: day,
+            dateStyles: configureDateStyle(monthStarted, monthEnded),
+            isSelected: Utils.isSameDay(selectedDate, day),
+            inMonth: day.month == selectedDate.month,
+            isHoliday: widget.holidays == null
+                ? false
+                : widget.holidays!.isEmpty
+                    ? false
+                    : widget.holidays!.contains(day.weekday),
+            isBlocked: widget.blockedDates == null
+                ? false
+                : widget.blockedDates!.any((element) =>
+                    element.year == day.year &&
+                    element.month == day.month &&
+                    element.day == day.day),
+          ),
         );
       }
     }

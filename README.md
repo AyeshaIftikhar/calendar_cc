@@ -2,9 +2,11 @@
 
 Simple flutter calendar based on [flutter_neat_and_clean_calendar](https://github.com/rwbr/flutter_calendar) package.
 
-| ![screenshot 1](https://github.com/AyeshaIftikhar/flutter_calendar/blob/main/screenshots/flutter_01.png) |  ![screenshot 2](https://github.com/AyeshaIftikhar/flutter_calendar/blob/main/screenshots/flutter_02.png) | 
+| ![screenshot 1](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_01.png) | ![screenshot 2](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_02.png) | 
 | --------------------------------------- | --------------------------------------- | 
-| ![screenshot 3](https://github.com/AyeshaIftikhar/flutter_calendar/blob/main/screenshots/flutter_03.png)|  
+| ![screenshot 3](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_03.png)| ![screenshot 4](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_04.png) | 
+| --------------------------------------- | --------------------------------------- | 
+| ![screenshot 5](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_05.png)| 
 
 ## Features
 
@@ -13,6 +15,8 @@ The calendar view shows a list of events for the selected date with customizable
 - Single day event (starts and ends at certain time on a single day)
 - All-day events (Span over a full day with no specific start and end time, property `isAllDay`)
 - Multi-day events (Start at a specific time on one day and end at a specific time on another day, property `isMultiDay`)
+- Disable specific days of months as holiday. 
+- Block certain dates 
 
 ## Getting started
 
