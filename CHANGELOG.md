@@ -1,3 +1,8 @@
+## 1.0.0+3
+* updated documentation
+* removed deprecated code
+* updated dependencies
+
 ## 1.0.0+2
 * `calendarAspectRatio` property added in Calendar Widget to customize the aspect ratio of the calendar.
 

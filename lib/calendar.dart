@@ -495,9 +495,9 @@ class _CalendarState extends State<Calendar> {
       final TextStyle body1StyleDisabled = body1Style!.copyWith(
           color: Color.fromARGB(
         100,
-        body1Style.color!.red,
-        body1Style.color!.green,
-        body1Style.color!.blue,
+        body1Style.color!.r.round(),
+        body1Style.color!.g.round(),
+        body1Style.color!.b.round(),
       ));
 
       dateStyles =

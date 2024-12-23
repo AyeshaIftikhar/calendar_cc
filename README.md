@@ -1,4 +1,4 @@
-# fluttercalendar
+# calendar_cc
 
 Simple flutter calendar based on [flutter_neat_and_clean_calendar](https://github.com/rwbr/flutter_calendar) package.
 
@@ -27,7 +27,7 @@ Embed the 'Calendar' widget in a column. Below the calendar (as the second widge
 
 ```
 dependencies:
-  fluttercalendar: ^0.0.1
+  calendar_cc: ^0.0.1
 ```
 
 ### Install
@@ -39,7 +39,7 @@ flutter pub get
 ### Import it
 
 ```dart
-import 'package:fluttercalendar/fluttercalendar.dart';
+import 'package:calendar_cc/calendar.dart';
 ```
 
 ### Use it
@@ -82,8 +82,8 @@ Calendar(
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter_calendar/enums.dart';
-import 'package:flutter_calendar/flutter_calendar.dart';
+import 'package:calendar_cc/enums.dart';
+import 'package:calendar_cc/calendar.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -97,7 +97,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Clean Calendar Demo',
+      title: 'Calendar CC Demo',
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.system,
