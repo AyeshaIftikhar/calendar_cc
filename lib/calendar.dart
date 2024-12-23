@@ -66,11 +66,12 @@ class Calendar extends StatefulWidget {
     this.eventTileHeight,
     this.image,
     this.blockedDates,
+    this.calendarAspectRatio,
   });
   final ValueChanged<DateTime>? onDateSelected;
   final ValueChanged<DateTime>? onMonthChanged;
   final ValueChanged<bool>? onExpandStateChanged;
-  final ValueChanged? onRangeSelected;
+  final ValueChanged<Range>? onRangeSelected;
   final ValueChanged<FlutterCalenderEvent>? onEventSelected;
   final ValueChanged<FlutterCalenderEvent>? onEventLongPressed;
   final bool isExpandable;
@@ -79,6 +80,7 @@ class Calendar extends StatefulWidget {
   final DatePickerType? datePickerType;
   final bool hideArrows;
   final bool hideTodayIcon;
+  final double? calendarAspectRatio;
 
   final List<FlutterCalenderEvent>? eventsList;
   final Color? defaultDayColor;
@@ -371,7 +373,7 @@ class _CalendarState extends State<Calendar> {
       child: Column(
         children: <Widget>[
           GridView.count(
-            childAspectRatio: 1.1,
+            childAspectRatio: widget.calendarAspectRatio ?? 1.1,
             primary: false,
             shrinkWrap: true,
             crossAxisCount: 7,

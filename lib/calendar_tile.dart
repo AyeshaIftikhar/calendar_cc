@@ -75,8 +75,6 @@ class FlutterCalenderTile extends StatelessWidget {
               Container(
                 height: events != null ? 34 : 40,
                 width: 40,
-                // If this tile is the selected date, draw a colored circle on it. The circle is filled with
-                // the color passed with the selectedColor parameter or red color.
                 decoration: isSelected && date != null
                     ? BoxDecoration(
                         borderRadius: BorderRadius.circular(5),

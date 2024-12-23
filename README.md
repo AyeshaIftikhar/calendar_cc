@@ -2,11 +2,10 @@
 
 Simple flutter calendar based on [flutter_neat_and_clean_calendar](https://github.com/rwbr/flutter_calendar) package.
 
-| ![screenshot 1](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_01.png) | ![screenshot 2](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_02.png) | 
-| --------------------------------------- | --------------------------------------- | 
-| ![screenshot 3](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_03.png)| ![screenshot 4](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_04.png) | 
-| --------------------------------------- | --------------------------------------- | 
-| ![screenshot 5](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_05.png)| 
+| ![screenshot 1](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_01.png) | ![screenshot 2](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_02.png) | ![screenshot 3](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_03.png) |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- | 
+| ![screenshot 3](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_04.png)| ![screenshot 4](https://github.com/AyeshaIftikhar/calendar_cc/blob/main/screenshots/flutter_05.png) | 
+
 
 ## Features
 
